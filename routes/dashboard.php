@@ -16,11 +16,12 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(
     [
-        'prefix' => LaravelLocalization::setLocale().'/admin',
-        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+        'prefix' => LaravelLocalization::setLocale().'/dashboard',
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
+        'as' => 'dashboard.'
     ],
     function () {
-        Route::get('/', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('admin.dashboard');
+        Route::get('/', [App\Http\Controllers\Dashboard\DashboardController::class, 'index'])->name('dashboard');
         
     }
 );
